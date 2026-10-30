@@ -1,0 +1,6 @@
+Аудиофайлы в generated/sounds/books/ взяты из CatQuest Books 0.6.4
+(автор daniilcathey (Cathey), https://www.curseforge.com/wow/addons/catquest-books/files/9233730) и распространяются под лицензией
+CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Аудио не изменено (режим copy). Таблицы и манифест этого модуля, производные от индекса
+CatQuest Books, распространяются на тех же условиях CC BY-NC-SA 4.0.

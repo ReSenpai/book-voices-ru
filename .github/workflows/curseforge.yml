@@ -1,0 +1,33 @@
+# Ручная загрузка текущей версии на CurseForge (Actions → «CurseForge» → Run workflow): для версии, которая вышла
+# на GitHub раньше, чем появился проект на CurseForge, или чтобы повторить неудавшуюся загрузку.
+# Новые версии уходят на CurseForge сами, из release.yml.
+name: CurseForge
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lua 5.1
+        uses: leafo/gh-actions-lua@v12
+        with:
+          luaVersion: "5.1.5"
+      - name: Проверка аддона
+        run: python3 tools/check.py --strict
+      - name: Сборка ZIP
+        run: python3 tools/package.py --notes release-notes.md
+      - name: CurseForge
+        env:
+          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        run: |
+          test -n "$CF_PROJECT_ID" || { echo "нет переменной репозитория CF_PROJECT_ID (Settings → Secrets and variables → Actions → Variables)"; exit 1; }
+          test -n "$CF_API_KEY" || { echo "нет секрета CF_API_KEY (Settings → Secrets and variables → Actions → Secrets)"; exit 1; }
+          VERSION="$(python3 tools/check.py --print-version)"
+          python3 tools/curseforge.py "dist/book-voices-ru-v$VERSION.zip" --notes release-notes.md

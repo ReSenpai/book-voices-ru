@@ -1,0 +1,60 @@
+# Проверки каждого pull request: тесты инструментов, Lua-тесты мостика на настоящем VoiceOver 1.4.5, целостность
+# аддона (хэши, таблицы, страницы ↔ звук, Lua, декодирование новых и изменённых OGG), нет копии плеера, нет личных
+# данных и ключей, новая версия при изменении аддона.
+name: Проверки
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Lua и ffmpeg — не через apt: зеркала Ubuntu отдают пакеты медленно
+      - name: Lua 5.1
+        uses: leafo/gh-actions-lua@v12
+        with:
+          luaVersion: "5.1.5"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Статический ffmpeg из пакета imageio-ffmpeg (PyPI, версия закреплена) — тот же, что у конвертера
+      - name: ffmpeg
+        run: |
+          python -m pip install --quiet "imageio-ffmpeg==0.6.0"
+          mkdir -p "$RUNNER_TEMP/bin"
+          ln -s "$(python -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" "$RUNNER_TEMP/bin/ffmpeg"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      - name: Проверка ffmpeg
+        run: ffmpeg -hide_banner -version | head -1
+      - name: Тесты инструментов
+        run: python3 -m unittest discover tools
+      # Мостик тестируется на исходниках VoiceOver из его релиза (архив закреплён по SHA-256)
+      - name: VoiceOver 1.4.5
+        run: |
+          curl -sSfL -o "$RUNNER_TEMP/vo.zip" "$VOICEOVER_URL"
+          echo "$VOICEOVER_SHA256  $RUNNER_TEMP/vo.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/vo.zip" -d "$RUNNER_TEMP/vo"
+          echo "VOICEOVER_DIR=$RUNNER_TEMP/vo/AI_VoiceOver" >> "$GITHUB_ENV"
+        env:
+          VOICEOVER_URL: https://github.com/mrthinger/wow-voiceover/releases/download/v1.4.5/AI_VoiceOver-WoW_BlizzClassic-v1.4.5.zip
+          VOICEOVER_SHA256: 47870e96bef68a2cf71d9bf9539d28d7695f8fd696032f7bccd5aa3551e0c2c4
+      - name: Lua-тесты мостика
+        run: |
+          python -m pip install --quiet "pytest==9.1.1" "lupa==2.8"
+          python -m pytest tests -q
+      - name: Проверка аддона
+        run: |
+          BASE="origin/${{ github.base_ref || 'main' }}"
+          python3 tools/check.py --strict --decode-changed "$BASE" --require-new-version "$BASE"
+      - name: Поиск ключей и токенов (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

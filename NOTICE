@@ -1,0 +1,43 @@
+Book Voices RU
+Сборка: ReSenpai, 2026
+
+Book Voices RU — неофициальный модуль озвучки для плеера VoiceOver с русской озвучкой книг, писем и табличек
+CatQuest Books. Своё здесь — перенос (структура файлов, индексы, сборка) и мостик, который ставит открытую страницу
+в очередь VoiceOver. Звук не изменён. Плеер VoiceOver в аддон не входит: это зависимость, которую игрок ставит сам.
+
+Авторы исходных проектов
+------------------------
+VoiceOver — mrthinger, xvwyh и соавторы. https://github.com/mrthinger/wow-voiceover
+  Лицензия Unlicense. Плеер, для которого сделан модуль; ставится отдельно (проверено с 1.4.5).
+
+CatQuest Books — Cathey (daniilcathey). https://www.curseforge.com/wow/addons/catquest-books
+  Лицензия CC BY-NC-SA 4.0. Использована версия 0.6.4. Озвучка скопирована без изменений; изменены только
+  имена файлов и индексы, чтобы её мог проигрывать VoiceOver. Рассказы о местах (лор зон) не входят.
+
+CatQuest — daniilcathey. https://www.curseforge.com/wow/addons/catquest
+  Лицензия MIT. По его образцу сделаны поиск озвученной страницы и очистка текста; дословно перенесённые части
+  (TextMatch.lua модуля) — с уведомлением MIT в THIRD-PARTY.md.
+
+Русский VoiceOver — Marat Zimnurov (the-homeless-god) и Proza1k. https://github.com/the-homeless-god/wow-voiceover
+  Лицензия GPL v3. На его основе сделан конвертер, которым собран этот модуль; формат модуля озвучки
+  (Module.lua, таблицы) — из VoiceOver mrthinger.
+
+Авторы VoiceOver, русского VoiceOver, CatQuest и CatQuest Books не участвуют в этой сборке, не одобряли и не
+поддерживают её. Вопросы и ошибки сборки — сюда, в issues этого репозитория, а не им.
+
+Что под какой лицензией
+-----------------------
+- Озвучка (AI_VoiceOverData_BookVoices_RU/generated/sounds/), таблицы и manifest.json модуля, примеры в
+  docs/samples/ — CC BY-NC-SA 4.0 (LICENSE-ASSETS.txt): только некоммерческое использование, с указанием
+  авторов, производные — на тех же условиях. Примеры в docs/samples/ перекодированы в mp4 для плеера на странице.
+- Код этой сборки (Module.lua, Bridge.lua, TextMatch.lua модуля, tests/, tools/, .github/) — GNU GPL v3 (LICENSE);
+  части TextMatch.lua из CatQuest — также под MIT (THIRD-PARTY.md).
+- Зависимости, которые ставятся отдельно (VoiceOver), — по своим лицензиям (THIRD-PARTY.md).
+
+Book Voices RU бесплатна и не продаётся. Распространять её с рекламой, за плату или через программы
+вознаграждения за загрузки нельзя: этого не разрешает лицензия озвучки.
+
+Неофициальный проект
+--------------------
+Book Voices RU не связана с Blizzard Entertainment и не одобрена ею. World of Warcraft и Warcraft — товарные знаки
+или зарегистрированные товарные знаки Blizzard Entertainment, Inc.

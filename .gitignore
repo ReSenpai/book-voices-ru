@@ -1,0 +1,16 @@
+# Собранные архивы релиза
+dist/
+*.zip
+
+# Инструменты, которые CI ставит в рабочую копию (leafo/gh-actions-lua)
+.lua/
+
+# Python
+__pycache__/
+
+# Редакторы и системы
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store

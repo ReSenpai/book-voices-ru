@@ -1,0 +1,9 @@
+# Наши текстовые файлы — с переводом строки LF в репозитории и в любой рабочей копии.
+* text=auto eol=lf
+
+# Звук и картинки — байт в байт (хэши звука сверяет tools/check.py).
+*.ogg binary
+*.mp4 binary
+*.png binary
+*.wav binary
+*.zip binary

@@ -1,0 +1,19 @@
+## Interface: 11509
+## Title: Book Voices RU — русская озвучка книг
+## Notes: Озвучка книг, записок и табличек из CatQuest Books 0.6.4 (автор daniilcathey (Cathey), CC BY-NC-SA 4.0) через очередь VoiceOver, звук перенесён без изменений; для отката удалите папку этого аддона и перезапустите клиент. VoiceOver загружает модуль, даже если он выключен.
+## Version: 0.1.0
+## LoadOnDemand: 1
+## RequiredDeps: AI_VoiceOver
+## X-Part-Of: VoiceOver
+## X-Child-Of: VoiceOver
+## X-VoiceOver-DataModule-Version: 1
+## X-VoiceOver-DataModule-Priority: 200
+## X-VoiceOver-DataModule-Maps: 0, 1
+## X-VoiceOver-Locale: ruRU
+
+Module.lua
+generated\books.lua
+generated\book_titles.lua
+generated\sound_length_table.lua
+TextMatch.lua
+Bridge.lua

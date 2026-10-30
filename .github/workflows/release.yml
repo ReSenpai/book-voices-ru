@@ -1,0 +1,70 @@
+# Релиз при каждом попадании в main (принятый pull request): если версии из TOC модуля ещё нет среди тегов,
+# аддон проверяется, собирается ZIP и публикуется GitHub Release v<версия> с текстом из CHANGELOG.md.
+# Версия не поднята — релиза нет (так бывает при правках README и прочего).
+# Если на CurseForge заведён проект (CF_PROJECT_ID + CF_API_KEY), тот же ZIP уходит и туда.
+name: Релиз
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Версия
+        id: version
+        run: |
+          VERSION="$(python3 tools/check.py --print-version)"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null; then
+            echo "new=false" >> "$GITHUB_OUTPUT"
+            echo "v$VERSION уже выпущена — релиз не нужен"
+          else
+            echo "new=true" >> "$GITHUB_OUTPUT"
+          fi
+      # Lua — сборка с GitHub, а не через apt: зеркала Ubuntu отдают пакеты медленно
+      - name: Lua 5.1
+        if: steps.version.outputs.new == 'true'
+        uses: leafo/gh-actions-lua@v12
+        with:
+          luaVersion: "5.1.5"
+      # Без декодирования: звук декодировался на PR, через который попал в main, а неизменность байтов
+      # доказывают хэши манифеста.
+      - name: Проверка аддона
+        if: steps.version.outputs.new == 'true'
+        run: |
+          python3 -m unittest discover tools
+          python3 tools/check.py --strict
+      - name: Сборка ZIP
+        if: steps.version.outputs.new == 'true'
+        run: python3 tools/package.py --notes release-notes.md
+      - name: GitHub Release
+        if: steps.version.outputs.new == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "v$VERSION" "dist/book-voices-ru-v$VERSION.zip" \
+            --target "$GITHUB_SHA" --title "Book Voices RU $VERSION" --notes-file release-notes.md
+      # CurseForge: только когда заведены переменная репозитория CF_PROJECT_ID и секрет CF_API_KEY
+      # (Settings → Secrets and variables → Actions); без них tools/curseforge.py пропускает загрузку.
+      - name: CurseForge
+        if: steps.version.outputs.new == 'true'
+        env:
+          CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: python3 tools/curseforge.py "dist/book-voices-ru-v$VERSION.zip" --notes release-notes.md
