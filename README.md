@@ -33,37 +33,37 @@
 
 **Книга** — «Роман о Моргане Ладиморе», страница 1. Голос — рассказчик.
 
-[▶ narrator.mp4](docs/samples/narrator.mp4)
+https://github.com/user-attachments/assets/31505ed0-4a4b-4bac-b4af-81f0aaac5c47
 
 **Дневник** — «Записи Грелина Белоборода», страница 1. Голос — дворф.
 
-[▶ dwarf.mp4](docs/samples/dwarf.mp4)
+https://github.com/user-attachments/assets/e62037bc-0f86-4b09-911e-5154b1ac6e43
 
 **Письмо** — «Записка бабули Стоунфилд». Голос — человек, женщина.
 
-[▶ human.mp4](docs/samples/human.mp4)
+https://github.com/user-attachments/assets/54aec524-cb12-4249-a897-5cb9f16f2e69
 
 **Письмо** — «Письмо Джин'Зилу». Голос — орк.
 
-[▶ orc.mp4](docs/samples/orc.mp4)
+https://github.com/user-attachments/assets/cb5bc11a-a7fa-44b8-9a1f-0bdb035f7bbc
 
 **Дневник** — «Записи Велинды», страница 1. Голос — ночная эльфийка.
 
-[▶ nightelf.mp4](docs/samples/nightelf.mp4)
+https://github.com/user-attachments/assets/16245b8d-ee3b-478a-99ed-8da004f77512
 
 **Табличка** — «Капитан следопытов Аллерия Ветрокрылая».
 
-[▶ plaque.mp4](docs/samples/plaque.mp4)
+https://github.com/user-attachments/assets/a4ac0db9-92c0-4d03-b491-d558948b439a
 
 **Записка** — «Порванная записка». Голос — таурен.
 
-[▶ tauren.mp4](docs/samples/tauren.mp4)
+https://github.com/user-attachments/assets/2d3cdd4b-62b8-42b7-aa72-6ba16fdbb6f3
 
 **Донесение** — «Донесение стражей смерти». Голос — нежить.
 
-[▶ undead.mp4](docs/samples/undead.mp4)
+https://github.com/user-attachments/assets/d3a7e6be-da7f-40e7-84ed-a5639aa38534
 
-Все примеры — в [docs/samples](docs/samples).
+Те же примеры файлами — в [docs/samples](docs/samples): если открыть файл (View raw), звук не приглушён.
 
 ## Что озвучено
 
