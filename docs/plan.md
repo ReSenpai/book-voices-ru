@@ -89,12 +89,13 @@
       52 без субтитров), 10.63 ч, 188 МБ, лор исключён (930); 1469/1469 декодируются, проблем нет. В `book-voices`
       сквозной тест собранного модуля (`tests/test_module.py`). Проверено в игре 30.10.2026 (после переделки мостика:
       очередь, перелистывание, клик по строке, книга во время квеста, пауза).
-- [ ] B5. Репозиторий по образцу quest-voices-ru: README (примеры — `docs/samples/*.mp4`, 8 голосов), CHANGELOG,
+- [x] B5. Репозиторий по образцу quest-voices-ru: README (примеры — `docs/samples/*.mp4`, 8 голосов), CHANGELOG,
       NOTICE, THIRD-PARTY (MIT CatQuest), CONTRIBUTING, LICENSE (GPL v3), LICENSE-ASSETS (CC BY-NC-SA 4.0);
       `tools/check.py` (+ сверка Books ↔ звук), `package.py` (→ `dist/book-voices-ru-v<версия>.zip`, 192 МБ),
       `curseforge.py`; workflows checks (+ Lua-тесты мостика на VoiceOver 1.4.5 из релиза, SHA-256 закреплён) / release /
-      curseforge. GitHub: ReSenpai/book-voices-ru. Осталось: первый коммит и push (пользователь), защита main,
-      ролики примеров в README через загрузку на GitHub (user-attachments), About и темы.
+      curseforge. GitHub: ReSenpai/book-voices-ru (публичный, About и темы); 30.10.2026 первый push → релиз v0.1.0
+      (ZIP 192 МБ), checks на main зелёные (26 + 39 тестов, gitleaks), защита main как у квестов (PR + check, и для
+      админа). Ролики примеров в README — ссылки user-attachments (сверены с docs/samples по SHA-256).
 
 ## Не входит
 
