@@ -8,6 +8,8 @@
 [VoiceOver](https://www.curseforge.com/wow/addons/voiceover): он нужен для работы. Книги читаются в той же очереди,
 что и квесты [Quest Voices RU](https://github.com/ReSenpai/quest-voices-ru).
 
+[![CurseForge](https://img.shields.io/badge/CurseForge-Book%20Voices%20RU-f16436?logo=curseforge&logoColor=white)](https://www.curseforge.com/wow/addons/book-voices-ru)
+[![Скачивания на CurseForge](https://img.shields.io/curseforge/dt/1777533?label=Скачивания&logo=curseforge&logoColor=white)](https://www.curseforge.com/wow/addons/book-voices-ru)
 [![Последний релиз](https://img.shields.io/github/v/release/ReSenpai/book-voices-ru?label=Релиз&logo=github)](https://github.com/ReSenpai/book-voices-ru/releases/latest)
 [![WoW Classic Era](https://img.shields.io/badge/WoW-Classic%20Era%201.15%20ruRU-c79c6e)](#совместимость)
 [![Озвучка: CC BY-NC-SA 4.0](https://img.shields.io/badge/Озвучка-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE-ASSETS.txt)
@@ -104,7 +106,8 @@ https://github.com/user-attachments/assets/d3a7e6be-da7f-40e7-84ed-a5639aa38534
    `AI_VoiceOver-WoW_BlizzClassic-v1.4.5.zip` из [релиза VoiceOver](https://github.com/mrthinger/wow-voiceover/releases/tag/v1.4.5)
    и распакуйте в `World of Warcraft\_classic_era_\Interface\AddOns` — получится папка `AI_VoiceOver`.
    Нужна версия 1.4.5 или новее: старые не работают на клиенте 1.15.9.
-2. **Book Voices RU.** Скачайте `book-voices-ru-v<версия>.zip` из
+2. **Book Voices RU.** В приложении CurseForge найдите [Book Voices RU](https://www.curseforge.com/wow/addons/book-voices-ru)
+   и установите — VoiceOver приложение поставит само. Или вручную: скачайте `book-voices-ru-v<версия>.zip` из
    [последнего релиза](https://github.com/ReSenpai/book-voices-ru/releases/latest) и распакуйте туда же — получится
    папка `AI_VoiceOverData_BookVoices_RU`.
 3. Запустите игру заново — именно перезапуск, а не `/reload`: так клиент увидит новые звуки.
